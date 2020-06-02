@@ -1,0 +1,111 @@
+import random
+import turtle
+import time
+
+
+wn = turtle.Screen()
+wn.title("square")
+wn.bgcolor("white")
+wn.setup(width = 800, height = 600)
+wn.tracer(0)
+
+currentX = 0
+currentY = 0
+
+point1 = [300,300]
+point2 = [300,-300]
+point3 = [-300,-300]
+point4 = [-300,300]
+
+point = turtle.Turtle()
+point.penup()
+point.color("red")
+
+#draw first three points:
+
+point.setposition(point1[0],point1[1])
+point.dot()
+point.setposition(point2[0],point2[1])
+point.dot()
+point.setposition(point3[0],point3[1])
+point.dot()
+point.setposition(point4[0],point4[1])
+point.dot()
+#draw starting position
+
+last_point = 0
+
+point.color("blue")
+point.setposition(currentX,currentY)
+point.dot()
+
+point.color("black")
+
+time1 = time.time()
+random.seed((time1	- int(time1))*1000)
+rand = random.randint(1,4)
+def game(lastX,lastY):
+	global rand
+	global currentX
+	global currentY
+	global last_point
+	
+	while True:
+		rand = random.randint(1,4)
+		if last_point == 1 and rand == 2:
+			continue
+		if last_point == 2 and rand == 3:
+			continue
+		if last_point == 3 and rand == 4:
+			continue
+		if last_point == 4 and rand == 1:
+			continue
+		break
+			
+	x = lastX
+	y = lastY
+	if rand == 1:
+		last_point = 1
+		x = (point1[0]+lastX)*(1/2)
+		y = (point1[1]+lastY)*(1/2)
+	if rand == 2: 
+		last_point = 2
+		x = (point2[0]+lastX)*(1/2)
+		y = (point2[1]+lastY)*(1/2)
+	if rand == 3:
+		last_point = 3
+		x = (point3[0]+lastX)*(1/2)
+		y = (point3[1]+lastY)*(1/2)
+	if rand == 4:
+		last_point = 4
+		x = (point4[0]+lastX)*(1/2)
+		y = (point4[1]+lastY)*(1/2)
+		
+	point.setposition(x,y)
+	point.dot()
+	
+	currentX = x
+	currentY = y
+	
+#keyboard:
+wn.listen()
+wn.onkeypress(game(currentX,currentY),"d")
+
+#main loop
+while True:
+	wn.update()
+	game(currentX,currentY)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
