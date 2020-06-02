@@ -1,0 +1,127 @@
+import random
+import turtle
+import time
+import math
+
+
+wn = turtle.Screen()
+wn.title("square")
+wn.bgcolor("white")
+wn.setup(width = 800, height = 600)
+wn.tracer(0)
+
+currentX = 0
+currentY = 0
+
+point1 = [300,300]
+point2 = [300,-300]
+point3 = [-300,-300]
+point4 = [-300,300]
+
+point = turtle.Turtle()
+point.penup()
+point.color("red")
+
+#draw first three points:
+
+point.setposition(point1[0],point1[1])
+point.dot()
+point.setposition(point2[0],point2[1])
+point.dot()
+point.setposition(point3[0],point3[1])
+point.dot()
+point.setposition(point4[0],point4[1])
+point.dot()
+#draw starting position
+
+last_point = 0
+
+point.color("blue")
+point.setposition(currentX,currentY)
+point.dot()
+
+point.color("black")
+
+time1 = time.time()
+random.seed((time1	- int(time1))*1000)
+rand = random.randint(1,4)
+def game(lastX,lastY):
+	global rand
+	global currentX
+	global currentY
+	global last_point
+	
+	while True:
+		rand = random.randint(1,4)
+		#==================erase a 100*100 square in the middle
+		if rand == 1:
+			if (point1[0]+lastX)*(1/2) <= 50 and (point1[0]+lastX)*(1/2) >= -50 and (point1[1]+lastY)*(1/2) <= 50 and (point1[1]+lastY)*(1/2) >= -50:
+				continue
+		if rand == 2:
+			if (point2[0]+lastX)*(1/2) <= 50 and (point2[0]+lastX)*(1/2) >= -50 and (point2[1]+lastY)*(1/2) <= 50 and (point2[1]+lastY)*(1/2) >= -50:
+				continue
+		if rand == 3:
+			if (point3[0]+lastX)*(1/2) <= 50 and (point3[0]+lastX)*(1/2) >= -50 and (point3[1]+lastY)*(1/2) <= 50 and (point3[1]+lastY)*(1/2) >= -50:
+				continue
+		if rand == 4:
+			if (point4[0]+lastX)*(1/2) <= 50 and (point4[0]+lastX)*(1/2) >= -50 and (point4[1]+lastY)*(1/2) <= 50 and (point4[1]+lastY)*(1/2) >= -50:
+				continue
+		
+		#===================erase a 50r circle in the middle
+		#if rand == 1:
+		#	if ((point1[0]+lastX)*(1/2))**2 + ((point1[1]+lastY)*(1/2))**2 <= 50**2:
+		#		continue
+		#if rand == 2:
+		#	if ((point2[0]+lastX)*(1/2))**2 + ((point2[1]+lastY)*(1/2))**2 <= 50**2:
+		#		continue
+		#if rand == 3:
+		#	if ((point3[0]+lastX)*(1/2))**2 + ((point3[1]+lastY)*(1/2))**2 <= 50**2:
+		#		continue
+		#if rand == 4:
+		#	if ((point4[0]+lastX)*(1/2))**2 + ((point4[1]+lastY)*(1/2))**2 <= 50**2:
+		#		continue
+		break
+			
+	x = lastX
+	y = lastY
+	if rand == 1:
+		last_point = 1
+		x = (point1[0]+lastX)*(1/2)
+		y = (point1[1]+lastY)*(1/2)
+	if rand == 2: 
+		last_point = 2
+		x = (point2[0]+lastX)*(1/2)
+		y = (point2[1]+lastY)*(1/2)
+	if rand == 3:
+		last_point = 3
+		x = (point3[0]+lastX)*(1/2)
+		y = (point3[1]+lastY)*(1/2)
+	if rand == 4:
+		last_point = 4
+		x = (point4[0]+lastX)*(1/2)
+		y = (point4[1]+lastY)*(1/2)
+		
+	point.setposition(x,y)
+	point.dot()
+	
+	currentX = x
+	currentY = y
+
+#main loop
+while True:
+	wn.update()
+	game(currentX,currentY)
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
