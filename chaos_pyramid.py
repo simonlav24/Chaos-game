@@ -8,7 +8,7 @@ wn.title("pyramid")
 wn.bgcolor("white")
 wn.setup(width = 800, height = 600)
 wn.tracer(0)
-
+cgh;kdngdlgnkdflkgn
 pi = 3.1415926
 angle = 0.2
 
